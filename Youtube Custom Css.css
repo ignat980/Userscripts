@@ -1,0 +1,27 @@
+#content-text {
+    color: rgba(190, 100,100, 1);
+}
+
+#description {
+    color: rgba(100, 180, 200, 1);
+}
+
+#video-title {
+    color: rgba(190, 190, 190, 1);
+}
+
+.title {
+    color: rgba(220, 70, 70, 1);
+}
+
+paper-button[subscribed] {
+    background-color: hsl(0, 0%, 40%);
+}
+
+ytd-toggle-button-renderer#dislike-button.style-default-active {
+    color: rgb(255,55,25);
+}
+
+ytd-toggle-button-renderer#like-button.style-default-active {
+    color: rgb(64,225,64);
+}
