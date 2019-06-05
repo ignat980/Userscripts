@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Set video playback rate shortcuts
 // @namespace    http://ignat.space/
-// @version      4.1
+// @version      4.2
 // @description  Set every video's playback rate to 1 by pressing 'y', 2 by douple-tapping 'y', 3 by tapping 'u', 3.5 by double-tapping 'y', 1.5 by tapping 'y' then 'u', and 2.5 by tapping 'u' then 'y'.
 // @author       Ignat Remizov
 // @match        *://*/*
@@ -22,7 +22,7 @@
     var [keyI, keyU, keyY] = [73, 85, 89];
     window.addEventListener("keydown", function(e) {
         //If writing something in a text field (like a comment or a search), don't trigger a speed change
-        if (e.target.nodeName == "TEXTAREA" || e.target.nodeName == "INPUT" || e.target.nodeName == "YT-FORMATTED-STRING") return;
+        if (e.target.nodeName == "TEXTAREA" || e.target.nodeName == "INPUT" || e.target.nodeName == "YT-FORMATTED-STRING" || e.target.id == "contenteditable-root") return;
         var key = e.keyCode ? e.keyCode : e.which;
         var duration = e.timeStamp - prevTimeStamp;
         if (key === keyU) {
