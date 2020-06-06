@@ -4,6 +4,7 @@
 // @version      6.0
 // @author       Ignat Remizov
 // @description  Set every media element's playback rate. https://imgur.com/a/doFZXOI - visual explanation. Works for local mp4 files. Make sure "Run only in top frame:" setting is set to "No". Set to 1 by pressing 'y', 2 by douple-tapping 'y', 3 by tapping 'u', 3.5 by double-tapping 'y', 1.5 by tapping 'y' then 'u', and 2.5 by tapping 'u' then 'y'. Set to slower speeds by holding shift. You can also set media to loop by pressing 'p'.
+// @updateURL    https://github.com/ignat980/Userscripts/raw/master/Set%20media%20playrate%20shortcuts.user.js
 // @match        *://*/*
 // @grant        none
 // ==/UserScript==
