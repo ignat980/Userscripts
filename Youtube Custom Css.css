@@ -25,12 +25,23 @@ ytd-toggle-button-renderer#dislike-button.style-default-active {
 ytd-toggle-button-renderer#like-button.style-default-active {
     color: rgb(64,225,64);
 }
+
 div#menu ytd-menu-renderer div#top-level-buttons-computed ytd-toggle-button-renderer:nth-child(1) a yt-icon-button#button button[aria-pressed="true"] yt-icon.ytd-toggle-button-renderer {
   color: rgb(64,225,64);
 }
+
 div#menu ytd-menu-renderer div#top-level-buttons-computed ytd-toggle-button-renderer:nth-child(2) a yt-icon-button#button button[aria-pressed="true"] yt-icon.ytd-toggle-button-renderer {
   color: rgb(255,55,25);
 }
+
 div#playlist-action-menu ytd-menu-renderer div#top-level-buttons-computed ytd-toggle-button-renderer a yt-icon-button#button button[aria-pressed="true"] yt-icon.ytd-toggle-button-renderer {
   color: rgb(10,210,230);
+}
+
+div#notification-preference-button ytd-subscription-notification-toggle-button-renderer a yt-icon-button#button button[aria-label^="Current setting is all"] yt-icon.ytd-subscription-notification-toggle-button-renderer {
+  color: rgb(230,190,10);
+}
+
+div#notification-preference-button ytd-subscription-notification-toggle-button-renderer a yt-icon-button#button button[aria-label^="Current setting is personal"] yt-icon.ytd-subscription-notification-toggle-button-renderer {
+  color: rgb(150,130,10);
 }
