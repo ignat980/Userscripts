@@ -1,38 +1,56 @@
 #content-text {
-    color: rgba(190, 100,100, 1);
+  color: rgba(190, 100,100, 1);
 }
 
-#description yt-formatted-string.content {
-    color: rgba(200, 250, 250, 1);
+#description {
+  background: transparent;
+}
+
+#description-inner {
+  color: rgba(200, 250, 250, 1);
+}
+
+#description-inner {
+  color: rgba(200, 250, 250, 1);
+}
+
+#description-inline-expander {
+  color:rgba(235, 210, 250, 1);
+}
+
+#expand.ytd-text-inline-expander,
+#collapse.ytd-text-inline-expander {
+  color: rgb(74,150,74);
+}
+
+#title {
+  color: rgba(220, 70, 70, 1);
 }
 
 #video-title {
-    color: rgba(190, 190, 190, 1);
+  color: rgba(190, 70, 70, 1);
 }
 
-.title {
-    color: rgba(220, 70, 70, 1);
+yt-button-shape button {
+  background-color: transparent
 }
 
-tp-yt-paper-button[subscribed] {
-    background-color: transparent
-}
-
-ytd-toggle-button-renderer#dislike-button.style-default-active {
-    color: rgb(255,55,25);
-}
-
-ytd-toggle-button-renderer#like-button.style-default-active {
-    color: rgb(64,225,64);
-}
-
-div#menu ytd-menu-renderer div#top-level-buttons-computed ytd-toggle-button-renderer:nth-child(1) a yt-icon-button#button button[aria-pressed="true"] yt-icon.ytd-toggle-button-renderer {
+#segmented-like-button ytd-toggle-button-renderer yt-button-shape button[aria-pressed="true"] div yt-icon {
   color: rgb(64,225,64);
 }
 
-div#menu ytd-menu-renderer div#top-level-buttons-computed ytd-toggle-button-renderer:nth-child(2) a yt-icon-button#button button[aria-pressed="true"] yt-icon.ytd-toggle-button-renderer {
+#segmented-dislike-button ytd-toggle-button-renderer yt-button-shape button[aria-pressed="true"] div yt-icon {
   color: rgb(255,55,25);
 }
+
+ytd-toggle-button-renderer#like-button yt-button-shape button[aria-pressed="true"] {
+  color: rgb(64,225,64);
+}
+
+ytd-toggle-button-renderer#dislike-button yt-button-shape button[aria-pressed="true"] {
+  color: rgb(255,55,25);
+}
+
 
 div#playlist-action-menu ytd-menu-renderer div#top-level-buttons-computed ytd-toggle-button-renderer a yt-icon-button#button button[aria-pressed="true"] yt-icon.ytd-toggle-button-renderer {
   color: rgb(10,210,230);
@@ -44,4 +62,8 @@ div#notification-preference-button ytd-subscription-notification-toggle-button-r
 
 div#notification-preference-button ytd-subscription-notification-toggle-button-renderer a yt-icon-button#button button[aria-label^="Current setting is personal"] yt-icon.ytd-subscription-notification-toggle-button-renderer {
   color: rgb(150,130,10);
+}
+
+div#notification-preference-button ytd-subscription-notification-toggle-button-renderer a yt-icon-button#button button[aria-label^="Current setting is receive"] yt-icon.ytd-subscription-notification-toggle-button-renderer {
+  color: rgb(80,60,10);
 }
