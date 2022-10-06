@@ -6,7 +6,7 @@
   background: transparent;
 }
 
-#description-inner {
+#description .content {
   color: rgba(200, 250, 250, 1);
 }
 
@@ -19,11 +19,11 @@
 }
 
 #expand.ytd-text-inline-expander,
-#collapse.ytd-text-inline-expander {
+#collapse.ytd-text-inline-expander, .less-button, .more-button {
   color: rgb(74,150,74);
 }
 
-#title {
+#title, .title {
   color: rgba(220, 70, 70, 1);
 }
 
@@ -35,19 +35,17 @@ yt-button-shape button {
   background-color: transparent
 }
 
-#segmented-like-button ytd-toggle-button-renderer yt-button-shape button[aria-pressed="true"] div yt-icon {
+#segmented-like-button ytd-toggle-button-renderer yt-button-shape button[aria-pressed="true"] div yt-icon,
+ytd-toggle-button-renderer.style-default-active a yt-icon-button button[aria-label~="like"],
+ytd-toggle-button-renderer#like-button yt-button-shape button[aria-pressed="true"],
+ytd-toggle-button-renderer#like-button a yt-icon-button button[aria-pressed="true"] {
   color: rgb(64,225,64);
 }
 
-#segmented-dislike-button ytd-toggle-button-renderer yt-button-shape button[aria-pressed="true"] div yt-icon {
-  color: rgb(255,55,25);
-}
-
-ytd-toggle-button-renderer#like-button yt-button-shape button[aria-pressed="true"] {
-  color: rgb(64,225,64);
-}
-
-ytd-toggle-button-renderer#dislike-button yt-button-shape button[aria-pressed="true"] {
+#segmented-dislike-button ytd-toggle-button-renderer yt-button-shape button[aria-pressed="true"] div yt-icon,
+ytd-toggle-button-renderer.style-default-active a yt-icon-button button[aria-label~="Dislike"],
+ytd-toggle-button-renderer#dislike-button yt-button-shape button[aria-pressed="true"],
+ytd-toggle-button-renderer#dislike-button a yt-icon-button button[aria-pressed="true"] {
   color: rgb(255,55,25);
 }
 
