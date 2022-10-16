@@ -38,6 +38,7 @@ yt-button-shape button {
 #segmented-like-button ytd-toggle-button-renderer yt-button-shape button[aria-pressed="true"] div yt-icon,
 ytd-toggle-button-renderer.style-default-active a yt-icon-button button[aria-label~="like"],
 ytd-toggle-button-renderer#like-button yt-button-shape button[aria-pressed="true"],
+ytd-toggle-button-renderer#like-button a yt-icon-button button[aria-label="Unlike"],
 ytd-toggle-button-renderer#like-button a yt-icon-button button[aria-pressed="true"] {
   color: rgb(64,225,64);
 }
