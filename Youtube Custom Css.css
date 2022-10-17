@@ -36,15 +36,16 @@ yt-button-shape button {
 }
 
 #segmented-like-button ytd-toggle-button-renderer yt-button-shape button[aria-pressed="true"] div yt-icon,
-ytd-toggle-button-renderer.style-default-active a yt-icon-button button[aria-label~="like"],
+yt-icon-button button[aria-label~="like"][aria-pressed="true"],
+tp-yt-paper-button[aria-label~="like"][aria-pressed="true"] yt-icon,
 ytd-toggle-button-renderer#like-button yt-button-shape button[aria-pressed="true"],
-ytd-toggle-button-renderer#like-button a yt-icon-button button[aria-label="Unlike"],
-ytd-toggle-button-renderer#like-button a yt-icon-button button[aria-pressed="true"] {
+ytd-toggle-button-renderer#like-button a yt-icon-button button[aria-pressed="true"], 
+ytd-toggle-button-renderer#like-button a yt-icon-button button[aria-label="Unlike"] {
   color: rgb(64,225,64);
 }
 
 #segmented-dislike-button ytd-toggle-button-renderer yt-button-shape button[aria-pressed="true"] div yt-icon,
-ytd-toggle-button-renderer.style-default-active a yt-icon-button button[aria-label~="Dislike"],
+yt-icon-button button[aria-label~="Dislike"][aria-pressed="true"] yt-icon,
 ytd-toggle-button-renderer#dislike-button yt-button-shape button[aria-pressed="true"],
 ytd-toggle-button-renderer#dislike-button a yt-icon-button button[aria-pressed="true"] {
   color: rgb(255,55,25);
