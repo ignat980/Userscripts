@@ -40,7 +40,7 @@ div#subscribe-button ytd-subscribe-button-renderer yt-button-shape button[aria-l
 }
 
 div#subscribe-button ytd-subscribe-button-renderer yt-button-shape button[aria-label~="Unsubscribe"] {
-  color: rgb(95, 40, 40);
+  color: rgb(80, 80, 80);
 }
 
 #segmented-like-button ytd-toggle-button-renderer yt-button-shape button[aria-pressed="true"] div yt-icon,
