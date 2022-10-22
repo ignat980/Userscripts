@@ -35,6 +35,14 @@ yt-button-shape button {
   background-color: transparent
 }
 
+div#subscribe-button ytd-subscribe-button-renderer yt-button-shape button[aria-label~="Subscribe"] {
+  color: rgb(190, 30, 30);
+}
+
+div#subscribe-button ytd-subscribe-button-renderer yt-button-shape button[aria-label~="Unsubscribe"] {
+  color: rgb(95, 40, 40);
+}
+
 #segmented-like-button ytd-toggle-button-renderer yt-button-shape button[aria-pressed="true"] div yt-icon,
 yt-icon-button button[aria-label~="like"][aria-pressed="true"],
 tp-yt-paper-button[aria-label~="like"][aria-pressed="true"] yt-icon,
