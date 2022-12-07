@@ -51,7 +51,7 @@ ytd-toggle-button-renderer#like-button a yt-icon-button button[aria-pressed="tru
 ytd-toggle-button-renderer#like-button a yt-icon-button button[aria-label="Unlike"] {
   color: rgb(64,225,64);
 }
- 
+
 #segmented-like-button ytd-toggle-button-renderer yt-button-shape button[aria-pressed="true"] div yt-icon yt-animated-icon ytd-lottie-player lottie-component svg g g g path{
   color: rgb(64,225,64);
   fill: rgb(64, 225, 64);
