@@ -1,9 +1,9 @@
 // ==UserScript==
 // @name         Set media playrate shortcuts
 // @namespace    http://ignat.space/
-// @version      6.2
+// @version      6.2.1
 // @author       Ignat Remizov
-// @description  Set every media element's playback rate. https://imgur.com/a/doFZXOI - visual explanation. Works for local mp4 files. Make sure "Run only in top frame:" setting is set to "No". Set to 1 by pressing 'y', 2 by douple-tapping 'y', 3 by tapping 'u', 3.5 by double-tapping 'y', 1.5 by tapping 'y' then 'u', and 2.5 by tapping 'u' then 'y'. Set to slower speeds by holding shift. You can also set media to loop by pressing 'p'.
+// @description  Set every media element's playback rate. https://imgur.com/a/doFZXOI - visual explanation. Works for local mp4 files. Make sure "Run only in top frame:" setting is set to "No". Set to 1 by pressing 'y', 2 by douple-tapping 'y', 3 by tapping 'u', 3.5 by double-tapping 'u', 1.5 by tapping 'y' then 'u', and 2.5 by tapping 'u' then 'y'. Set to slower speeds by holding shift. You can also set media to loop by pressing 'p'.
 // @downloadURL  https://github.com/ignat980/Userscripts/raw/master/Set%20media%20playrate%20shortcuts.user.js
 // @updateURL    https://github.com/ignat980/Userscripts/raw/master/Set%20media%20playrate%20shortcuts.user.js
 // @match        *://*/*
@@ -44,7 +44,7 @@
     window.addEventListener("keydown", function(e) {
         //If writing something in a text field (like a comment or a search), don't trigger a speed change
         if (
-            e.target.nodeName === "TEXTAREA" || 
+            e.target.nodeName === "TEXTAREA" ||
             e.target.nodeName === "INPUT" ||
             (e.target.getAttribute("contenteditable") === "true") ||
             (e.target.getAttribute("role") === "textbox")
