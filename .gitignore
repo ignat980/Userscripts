@@ -1,2 +1,6 @@
 
 *.psd
+
+python/whisper
+python/pyannote_speaker_diarization*
+python/auth
