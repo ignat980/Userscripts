@@ -75,24 +75,20 @@ def diarize_audio(file_path, token, num_speakers):
             else:
                 raise
 
-def align_transcription_with_diarization(transcription_segments, diarization_result):
+def align_timestamps(transcription_segments, diarization_result):
     logger.info("Aligning transcription with diarization...")
     aligned_results = []
 
-    for segment in diarization_result.itersegments():
-        logger.info(f"Segment: start={segment.start}, end={segment.end}, attributes={dir(segment)}")
-        # Assume 'label' is replaced with the actual attribute holding speaker information
-        speaker = segment['label'] if 'label' in segment else 'Unknown'
+    for segment, _, label in diarization_result.itertracks(yield_label=True):
         start = segment.start
         end = segment.end
-
         transcribed_text = ""
         for seg in transcription_segments:
             if seg["start"] >= start and seg["end"] <= end:
                 transcribed_text += seg["text"] + " "
-
+        
         aligned_results.append({
-            "speaker": speaker,
+            "speaker": label,
             "start": start,
             "end": end,
             "text": transcribed_text.strip()
@@ -157,7 +153,7 @@ def main():
         
         # Step 4: Align transcription with diarization
         start_time = datetime.now()
-        aligned_results = align_transcription_with_diarization(transcription_segments, diarization_result)
+        aligned_results = align_timestamps(transcription_segments, diarization_result)
         end_time = datetime.now()
         logger.info(f"Alignment took {end_time - start_time}")
         
