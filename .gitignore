@@ -4,6 +4,7 @@
 python/whisper
 python/pyannote_speaker_diarization*
 python/auth
+python/secret
 *transcription*.txt
 
 lawyers_data*
