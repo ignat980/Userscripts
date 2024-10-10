@@ -7,6 +7,7 @@ import logging
 from datetime import datetime
 import time
 import ffmpeg
+import numpy as np
 
 # Configure logging to include timestamps
 logging.basicConfig(
@@ -27,22 +28,51 @@ def transcribe_audio(file_path):
     model = whisper.load_model("large-v3").to(torch.device("cuda"))
     logger.info("Model loaded to GPU.")
 
+    # Load audio using Whisper's load_audio function
+    audio = whisper.load_audio(file_path)
+    logger.info(f"Audio loaded. Shape: {audio.shape}")
+
+    
+    # Move audio to GPU
+    audio_tensor = torch.from_numpy(audio).to(torch.device("cuda"))
+    logger.info("Audio moved to GPU.")
+
+    # Transcribe audio
+    logger.info("Transcribing audio...")
+    result = model.transcribe(audio_tensor)
+    transcription = result["text"]
+    segments = result["segments"]
+    logger.info("Transcription completed.")
+    return transcription, segments
+
+def transcribe_audio(file_path):
+    logger.info("Starting transcription...")
+    model = whisper.load_model("large-v3").to(torch.device("cuda"))
+    logger.info("Model loaded to GPU.")
+
     # Load audio (original format)
     audio = whisper.load_audio(file_path)
     logger.info(f"Audio loaded. Shape: {audio.shape}")
+
+    # Check for NaNs or Infs in audio data
+    if np.isnan(audio).any() or np.isinf(audio).any():
+        logger.error("Audio contains NaNs or Infs.")
+        raise ValueError("Audio data is corrupted.")
 
     # Move audio to GPU
     audio_tensor = torch.from_numpy(audio).to(torch.device("cuda"))
     logger.info("Audio moved to GPU.")
 
-    # Check if model and data are on GPU
-    if next(model.parameters()).is_cuda:
-        logger.info("Model is on GPU.")
-    else:
-        logger.warning("Model is not on GPU.")
-
     logger.info("Transcribing audio...")
-    result = model.transcribe(audio_tensor)
+    result = model.transcribe(
+        audio_tensor,
+        temperature=0.2,
+        best_of=3,
+        beam_size=5,
+        language="en",
+        verbose=True
+    )
+
     transcription = result["text"]
     segments = result["segments"]
     logger.info("Transcription completed.")
@@ -52,8 +82,19 @@ def convert_to_wav(input_file, output_file, downsample):
     logger.info(f"Converting {input_file} to {output_file}...")
     try:
         if downsample:
-            # Convert to mono and downsample to 16kHz
-            ffmpeg.input(input_file).output(output_file, ac=1, ar=16000).run(overwrite_output=True)
+            # Use precise resampling without introducing artifacts
+            (
+                ffmpeg
+                .input(input_file)
+                .output(
+                    output_file,
+                    ac=1,  # Mono
+                    ar=16000,  # 16kHz
+                    audio_sync_method='soxr',
+                    compression_level=0,  # Highest quality
+                )
+                .run(overwrite_output=True)
+            )
         else:
             # Convert to WAV without changing channels or sample rate
             ffmpeg.input(input_file).output(output_file).run(overwrite_output=True)
@@ -61,7 +102,6 @@ def convert_to_wav(input_file, output_file, downsample):
     except ffmpeg.Error as e:
         logger.error(f"An error occurred during conversion: {e}")
         raise
-
 
 def diarize_audio(file_path, token, num_speakers):
     logger.info("Starting diarization...")
@@ -93,26 +133,40 @@ def diarize_audio(file_path, token, num_speakers):
                 time.sleep(5)  # Wait before retrying
             else:
                 raise
+from pyannote.core import Segment
 
 def align_timestamps(transcription_segments, diarization_result):
     logger.info("Aligning transcription with diarization...")
     aligned_results = []
 
-    for segment, _, label in diarization_result.itertracks(yield_label=True):
-        start = segment.start
-        end = segment.end
-        transcribed_text = ""
-        for seg in transcription_segments:
-            if seg["start"] >= start and seg["end"] <= end:
-                transcribed_text += seg["text"] + " "
-        
+    for t_segment in transcription_segments:
+        t_start = t_segment['start']
+        t_end = t_segment['end']
+        t_text = t_segment['text'].strip()
+        t_segment_obj = Segment(t_start, t_end)
+
+        # Find overlapping diarization segments
+        overlapping_speakers = []
+        for track in diarization_result.itertracks(yield_label=True):
+            d_segment, _, speaker = track
+            if d_segment.intersects(t_segment_obj):
+                # Calculate overlap duration
+                overlap = d_segment & t_segment_obj
+                overlapping_speakers.append((overlap.duration, speaker))
+
+        if overlapping_speakers:
+            # Choose the speaker with the longest overlap duration
+            selected_speaker = max(overlapping_speakers, key=lambda x: x[0])[1]
+        else:
+            selected_speaker = "Unknown"
+
         aligned_results.append({
-            "speaker": label,
-            "start": start,
-            "end": end,
-            "text": transcribed_text.strip()
+            'start': t_start,
+            'end': t_end,
+            'speaker': selected_speaker,
+            'text': t_text
         })
-    
+
     logger.info("Alignment completed.")
     return aligned_results
 
