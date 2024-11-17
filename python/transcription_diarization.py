@@ -50,27 +50,18 @@ def transcribe_audio(file_path):
     model = whisper.load_model("large-v3").to(torch.device("cuda"))
     logger.info("Model loaded to GPU.")
 
-    # Load audio (original format)
-    audio = whisper.load_audio(file_path)
-    logger.info(f"Audio loaded. Shape: {audio.shape}")
-
-    # Check for NaNs or Infs in audio data
-    if np.isnan(audio).any() or np.isinf(audio).any():
-        logger.error("Audio contains NaNs or Infs.")
-        raise ValueError("Audio data is corrupted.")
-
-    # Move audio to GPU
-    audio_tensor = torch.from_numpy(audio).to(torch.device("cuda"))
-    logger.info("Audio moved to GPU.")
-
-    logger.info("Transcribing audio...")
+    # Transcribe audio from file path
+    logger.info("Transcribing audio from file...")
     result = model.transcribe(
-        audio_tensor,
+        file_path,
         temperature=0.2,
         best_of=3,
         beam_size=5,
         language="en",
-        verbose=True
+        verbose=True,
+        no_speech_threshold=0.3,  # Lowered from default
+        logprob_threshold=-1.0,   # Allow low-confidence predictions
+        condition_on_previous_text=False  # Prevent conditioning on previous text
     )
 
     transcription = result["text"]
@@ -90,7 +81,7 @@ def convert_to_wav(input_file, output_file, downsample):
                     output_file,
                     ac=1,  # Mono
                     ar=16000,  # 16kHz
-                    audio_sync_method='soxr',
+                    af='aresample=resampler=soxr',
                     compression_level=0,  # Highest quality
                 )
                 .run(overwrite_output=True)
