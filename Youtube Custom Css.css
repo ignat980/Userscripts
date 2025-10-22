@@ -75,6 +75,21 @@ like-button-view-model button[aria-pressed="true"] svg g g g path {
   stroke: rgb(64, 225, 64);
 }
 
+#top-level-buttons-computed > segmented-like-dislike-button-view-model > yt-smartimation > div > div > like-button-view-model > toggle-button-view-model > button-view-model > button[aria-pressed="true"] > div.yt-spec-button-shape-next__icon > yt-icon {
+  color: rgb(64,225,64);
+  fill: rgb(64, 225, 64);
+  stroke: rgb(64, 225, 64);
+}
+
+#top-level-buttons-computed > segmented-like-dislike-button-view-model > yt-smartimation > div > div > like-button-view-model > toggle-button-view-model > button-view-model > button[aria-pressed="true"] > div.yt-spec-button-shape-next__icon > yt-icon > yt-animated-icon > ytd-lottie-player > lottie-component > svg > g > g:nth-child(7) > path {
+  fill: rgb(64, 225, 64);
+}
+
+#top-level-buttons-computed > segmented-like-dislike-button-view-model > yt-smartimation > div > div > like-button-view-model > toggle-button-view-model > button-view-model > button[aria-pressed="true"] > div.yt-spec-button-shape-next__icon > yt-icon > yt-animated-icon > ytd-lottie-player > lottie-component > svg > g > g:nth-child(8) > path {
+  fill: rgb(64, 225, 64);
+}
+
+
 #segmented-dislike-button button[aria-pressed="true"] div yt-icon,
 yt-icon-button button[aria-label~="Dislike"][aria-pressed="true"] yt-icon,
 ytd-toggle-button-renderer#dislike-button yt-button-shape button[aria-pressed="true"],
@@ -83,6 +98,12 @@ ytd-toggle-button-renderer#dislike-button a yt-icon-button button[aria-pressed="
 }
 
 dislike-button-view-model button[aria-pressed="true"] yt-icon svg path {
+  color: rgb(255,55,25);
+  fill: rgb(255,55,25);
+  stroke: rgb(255,55,25);
+}
+
+#top-level-buttons-computed > segmented-like-dislike-button-view-model > yt-smartimation > div > div > dislike-button-view-model > toggle-button-view-model > button-view-model > button[aria-pressed="true"] > div.yt-spec-button-shape-next__icon > span > span > div {
   color: rgb(255,55,25);
   fill: rgb(255,55,25);
   stroke: rgb(255,55,25);
